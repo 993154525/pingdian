@@ -11,10 +11,15 @@ spring:
     type: "com.alibaba.druid.pool.DruidDataSource"
 
   resources:
-    add-mappings: false
+    add-mappings: true
 
   mvc:
     throw-exception-if-no-handler-found: true
+    static-path-pattern: /static/**
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
 
 mybatis:
   mapper-locations: classpath:mapping/*.xml

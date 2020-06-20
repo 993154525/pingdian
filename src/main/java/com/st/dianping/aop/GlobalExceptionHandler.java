@@ -24,12 +24,12 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public CommonRes doError(HttpServletRequest request, HttpServletResponse response, Exception ex) {
         if (ex instanceof SocketException) {
-            return new CommonRes("fail",((SocketException)ex).getCommonError());
+            return new CommonRes("fail", ((SocketException) ex).getCommonError());
         } else if (ex instanceof NoHandlerFoundException) {
             return new CommonRes("fail", new CommonError(ErrorEnum.NO_HANDLER_FOUND));
-        }else if (ex instanceof ServletRequestBindingException) {
+        } else if (ex instanceof ServletRequestBindingException) {
             return new CommonRes("fail", new CommonError(ErrorEnum.UNBIND_EXCEPTION_ERROR));
-        }  else {
+        } else {
             return new CommonRes("fail", new CommonError(ErrorEnum.UNKNOWN_ERROR));
         }
     }
