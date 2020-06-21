@@ -12,7 +12,8 @@ public enum ErrorEnum {
     UNBIND_EXCEPTION_ERROR(10004, "请求参数错误"),
     PARAMETER_VALIDATION_ERROR(1005, "注册参数错误"),
 
-    REGISTER_DUP_FAIL(20001, "用户已存在");
+    REGISTER_DUP_FAIL(20001, "用户已存在"),
+    Login_FAIL(20002, "手机或者密码错误");
 
     public Integer errCode;
 

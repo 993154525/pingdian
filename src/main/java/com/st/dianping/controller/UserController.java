@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
 
@@ -24,6 +25,11 @@ import java.security.NoSuchAlgorithmException;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
+    public static final String CURRENT_USER_SEESION = "currentUserSession";
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     @Autowired
     private UserDtoMapper userDtoMapper;
@@ -46,7 +52,7 @@ public class UserController {
             throw new SocketException(new CommonError(ErrorEnum.NO_OBJECT_FOUND));
         }
 
-        return new CommonRes(userDtoMapper.selectByPrimaryKey(id));
+        return new CommonRes(userService.getUser(id));
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -67,6 +73,23 @@ public class UserController {
 
         return new CommonRes(registerUser);
 
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public CommonRes login(@RequestParam(value = "telPhone") String telPhone,
+                           @RequestParam(value = "password") String password) throws SocketException {
+
+        httpServletRequest.getSession().setAttribute(CURRENT_USER_SEESION, userService.LoginUser(telPhone, password));
+
+        return new CommonRes(userService.LoginUser(telPhone, password));
+    }
+
+    @RequestMapping(value = "/logout")
+    public CommonRes logout() {
+
+        httpServletRequest.getSession().invalidate();
+
+        return null;
     }
 
 }

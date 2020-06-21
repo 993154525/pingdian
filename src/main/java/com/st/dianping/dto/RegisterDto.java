@@ -21,6 +21,9 @@ public class RegisterDto {
     @NotNull(message = "性别不能为空")
     private Integer gender;
 
+    public RegisterDto() {
+    }
+
     public RegisterDto(String telPhone, String password, String nickName, Integer gender) {
         this.telPhone = telPhone;
         this.password = password;
@@ -58,5 +61,15 @@ public class RegisterDto {
 
     public void setGender(Integer gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "RegisterDto{" +
+                "telPhone='" + telPhone + '\'' +
+                ", password='" + password + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", gender=" + gender +
+                '}';
     }
 }

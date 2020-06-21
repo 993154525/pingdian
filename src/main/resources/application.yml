@@ -4,10 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://${MYSQL_HOST:127.0.0.1}/dianping?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8"
+    url: "jdbc:mysql://${MYSQL_HOST:127.0.0.1:3306}/dianping?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8"
     username: "${MYSQL_NAME:root}"
     password: "${MYSQL_PASSWORD:123456}"
-    #使用druid做链接池管理
     type: "com.alibaba.druid.pool.DruidDataSource"
 
   resources:

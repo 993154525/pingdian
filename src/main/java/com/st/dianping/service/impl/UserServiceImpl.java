@@ -44,8 +44,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean LoginUser(RegisterDto registerDto) {
-        return null;
+    public UserDto LoginUser(String telPhone, String password) throws SocketException {
+        try {
+            return userDtoMapper.selectByTelPhoneAndPassword(telPhone, Md5(password));
+        } catch (Exception e) {
+            throw new SocketException(new CommonError(ErrorEnum.Login_FAIL));
+        }
     }
 
     public static String Md5(String s) throws NoSuchAlgorithmException {

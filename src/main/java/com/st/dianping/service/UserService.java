@@ -16,6 +16,6 @@ public interface UserService {
 
     UserDto registerUser(UserDto registerDto) throws SocketException, NoSuchAlgorithmException;
 
-    Boolean LoginUser(RegisterDto registerDto);
+    UserDto LoginUser(String telPhone,String password) throws SocketException;
 
 }

@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
         } else if (ex instanceof ServletRequestBindingException) {
             return new CommonRes("fail", new CommonError(ErrorEnum.UNBIND_EXCEPTION_ERROR));
         } else {
-            return new CommonRes("fail", new CommonError(ErrorEnum.UNKNOWN_ERROR));
+            return new CommonRes("fail", ex.getMessage());
         }
     }
 
