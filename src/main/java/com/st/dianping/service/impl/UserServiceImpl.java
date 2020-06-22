@@ -1,7 +1,6 @@
 package com.st.dianping.service.impl;
 
 import com.st.dianping.common.CommonError;
-import com.st.dianping.dto.RegisterDto;
 import com.st.dianping.dto.UserDto;
 import com.st.dianping.eu.ErrorEnum;
 import com.st.dianping.exception.SocketException;
@@ -44,12 +43,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto LoginUser(String telPhone, String password) throws SocketException {
-        try {
-            return userDtoMapper.selectByTelPhoneAndPassword(telPhone, Md5(password));
-        } catch (Exception e) {
+    public UserDto LoginUser(String telPhone, String password) throws SocketException, NoSuchAlgorithmException {
+        UserDto userDto = userDtoMapper.selectByTelPhoneAndPassword(telPhone, Md5(password));
+
+        if (userDto == null) {
             throw new SocketException(new CommonError(ErrorEnum.Login_FAIL));
         }
+
+        return userDto;
     }
 
     public static String Md5(String s) throws NoSuchAlgorithmException {

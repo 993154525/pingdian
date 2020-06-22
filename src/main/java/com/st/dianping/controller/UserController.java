@@ -3,6 +3,7 @@ package com.st.dianping.controller;
 import com.st.dianping.common.BingingResultUtils;
 import com.st.dianping.common.CommonError;
 import com.st.dianping.common.CommonRes;
+import com.st.dianping.dto.LoginDto;
 import com.st.dianping.dto.RegisterDto;
 import com.st.dianping.dto.UserDto;
 import com.st.dianping.eu.ErrorEnum;
@@ -23,7 +24,7 @@ import java.security.NoSuchAlgorithmException;
  * @date 2020/6/19 15:28
  */
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
 
     public static final String CURRENT_USER_SEESION = "currentUserSession";
@@ -59,7 +60,7 @@ public class UserController {
     public CommonRes register(@Valid @RequestBody RegisterDto registerDto, BindingResult bindingResult) throws SocketException, NoSuchAlgorithmException {
 
         if (bindingResult.hasErrors()) {
-            return new CommonRes(BingingResultUtils.processBinding(bindingResult), ErrorEnum.PARAMETER_VALIDATION_ERROR.getErrMsg());
+            return new CommonRes("fail", BingingResultUtils.processBinding(bindingResult));
         }
 
         UserDto userDto = new UserDto();
@@ -76,12 +77,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public CommonRes login(@RequestParam(value = "telPhone") String telPhone,
-                           @RequestParam(value = "password") String password) throws SocketException {
+    public CommonRes login(@Valid @RequestBody LoginDto loginDto, BindingResult bindingResult) throws SocketException, NoSuchAlgorithmException {
+        if (bindingResult.hasErrors()) {
+            return new CommonRes("fail", BingingResultUtils.processBinding(bindingResult));
+        }
 
-        httpServletRequest.getSession().setAttribute(CURRENT_USER_SEESION, userService.LoginUser(telPhone, password));
+        UserDto userDto = userService.LoginUser(loginDto.getTelPhone(), loginDto.getPassword());
 
-        return new CommonRes(userService.LoginUser(telPhone, password));
+        if (userDto == null) {
+            return new CommonRes("fail", userDto);
+        }
+        httpServletRequest.getSession().setAttribute(CURRENT_USER_SEESION, userService.LoginUser(loginDto.getTelPhone(), loginDto.getPassword()));
+
+        return new CommonRes(userDto);
     }
 
     @RequestMapping(value = "/logout")
@@ -89,7 +97,17 @@ public class UserController {
 
         httpServletRequest.getSession().invalidate();
 
-        return null;
+        return new CommonRes("success", (UserDto) httpServletRequest.getSession().getAttribute(CURRENT_USER_SEESION));
+    }
+
+    @RequestMapping(value = "/getCurrentUser")
+    public CommonRes getCurrentUser() {
+        String msg = "success";
+        if ((UserDto) httpServletRequest.getSession().getAttribute(CURRENT_USER_SEESION) == null) {
+            msg = "fail";
+        }
+
+        return new CommonRes(msg, (UserDto) httpServletRequest.getSession().getAttribute(CURRENT_USER_SEESION));
     }
 
 }

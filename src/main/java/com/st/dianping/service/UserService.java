@@ -1,6 +1,5 @@
 package com.st.dianping.service;
 
-import com.st.dianping.dto.RegisterDto;
 import com.st.dianping.dto.UserDto;
 import com.st.dianping.exception.SocketException;
 
@@ -16,6 +15,6 @@ public interface UserService {
 
     UserDto registerUser(UserDto registerDto) throws SocketException, NoSuchAlgorithmException;
 
-    UserDto LoginUser(String telPhone,String password) throws SocketException;
+    UserDto LoginUser(String telPhone,String password) throws SocketException, NoSuchAlgorithmException;
 
 }

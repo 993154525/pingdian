@@ -22,3 +22,6 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapping/*.xml
+
+admin.name: 18874480670
+admin.password: 61QLbaWPNZcfN8dmkKN1uw==

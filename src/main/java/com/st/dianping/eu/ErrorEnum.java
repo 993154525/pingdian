@@ -13,7 +13,11 @@ public enum ErrorEnum {
     PARAMETER_VALIDATION_ERROR(1005, "注册参数错误"),
 
     REGISTER_DUP_FAIL(20001, "用户已存在"),
-    Login_FAIL(20002, "手机或者密码错误");
+    Login_FAIL(20002, "手机或者密码错误"),
+
+    ADMIN_LOGIN_MISS(30001,"用户名或密码不能为空"),
+    ADMIN_LOGIN_FAIL(30002,"用户名或密码错误"),
+    ADMIN_LOGIN_UN(30003,"请先登录");
 
     public Integer errCode;
 
