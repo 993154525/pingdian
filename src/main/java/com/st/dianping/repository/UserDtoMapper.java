@@ -55,4 +55,6 @@ public interface UserDtoMapper  {
      * @mbg.generated Sun Jun 21 17:01:26 GMT+08:00 2020
      */
     int updateByPrimaryKey(UserDto record);
+
+    int countAllUser();
 }

@@ -17,4 +17,5 @@ public interface UserService {
 
     UserDto LoginUser(String telPhone,String password) throws SocketException, NoSuchAlgorithmException;
 
+    Integer countAllUser();
 }

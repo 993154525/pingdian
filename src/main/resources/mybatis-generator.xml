@@ -40,7 +40,13 @@
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"></table>
         -->
-        <table tableName="user" domainObjectName="UserDto" enableCountByExample="false"
+        <!--        <table tableName="user" domainObjectName="UserDto" enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+
+        <table tableName="seller" domainObjectName="SellerDto" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
