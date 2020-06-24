@@ -46,7 +46,19 @@
         <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--        </table>-->
 
-        <table tableName="seller" domainObjectName="SellerDto" enableCountByExample="false"
+<!--        <table tableName="seller" domainObjectName="SellerDto" enableCountByExample="false"-->
+<!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--        </table>-->
+
+<!--        <table tableName="category" domainObjectName="CategoryDto" enableCountByExample="false"-->
+<!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--        </table>-->
+
+        <table tableName="shop" domainObjectName="ShopDto" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>

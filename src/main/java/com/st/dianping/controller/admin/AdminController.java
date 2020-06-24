@@ -9,6 +9,9 @@ import com.st.dianping.aop.AdminPermission;
 import com.st.dianping.common.CommonError;
 import com.st.dianping.eu.ErrorEnum;
 import com.st.dianping.exception.SocketException;
+import com.st.dianping.service.CategoryService;
+import com.st.dianping.service.SellerService;
+import com.st.dianping.service.ShopService;
 import com.st.dianping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,6 +42,15 @@ public class AdminController {
     private UserService userService;
 
     @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private SellerService sellerService;
+
+    @Autowired
+    private ShopService shopService;
+
+    @Autowired
     private HttpServletRequest httpServletRequest;
 
     @RequestMapping(value = "/login")
@@ -61,6 +73,9 @@ public class AdminController {
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("admin/admin/index");
         modelAndView.addObject("userCount", userService.countAllUser());
+        modelAndView.addObject("categoryCount", categoryService.countAllCategory());
+        modelAndView.addObject("shopCount", shopService.countAllShop());
+        modelAndView.addObject("sellerCount", sellerService.countAllSeller());
         modelAndView.addObject("CONTROLLER_NAME", "admin");
         modelAndView.addObject("ACTION_NAME", "index");
 

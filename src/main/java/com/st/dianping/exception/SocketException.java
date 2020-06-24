@@ -1,6 +1,7 @@
 package com.st.dianping.exception;
 
 import com.st.dianping.common.CommonError;
+import com.st.dianping.eu.ErrorEnum;
 
 /**
  * @author ShaoTian
@@ -13,6 +14,12 @@ public class SocketException extends Exception {
     public SocketException(CommonError commonError) {
         super();
         this.commonError = commonError;
+    }
+
+    public SocketException(ErrorEnum errorEnum, String msg) {
+        super();
+        this.commonError = new CommonError(errorEnum);
+        this.commonError.setMsg(msg);
     }
 
     public CommonError getCommonError() {

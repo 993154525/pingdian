@@ -8,8 +8,10 @@ import com.st.dianping.repository.SellerDtoMapper;
 import com.st.dianping.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +24,7 @@ public class SellerServiceImpl implements SellerService {
     private SellerDtoMapper sellerDtoMapper;
 
     @Override
+    @Transactional
     public SellerDto create(SellerDto sellerDto) {
         sellerDto.setDisabledFlag(0);
         sellerDto.setRemarkScore(new BigDecimal(0));
@@ -49,9 +52,15 @@ public class SellerServiceImpl implements SellerService {
         }
 
         sellerDto.setDisabledFlag(disabledFlag);
+        sellerDto.setUpdatedAt(new Date(System.currentTimeMillis() + 28800000L));
         sellerDtoMapper.updateByPrimaryKeySelective(sellerDto);
 
         return sellerDto;
+    }
+
+    @Override
+    public Integer countAllSeller() {
+        return sellerDtoMapper.countAllSeller();
     }
 
 }

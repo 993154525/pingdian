@@ -56,4 +56,6 @@ public interface SellerDtoMapper {
      * @mbg.generated Tue Jun 23 12:00:46 CST 2020
      */
     int updateByPrimaryKey(SellerDto record);
+
+    int countAllSeller();
 }

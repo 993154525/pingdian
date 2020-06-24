@@ -19,4 +19,6 @@ public interface SellerService {
 
     SellerDto changeStatus(Integer id, Integer disabledFlag) throws SocketException;
 
+    Integer countAllSeller();
+
 }

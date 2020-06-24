@@ -8,6 +8,7 @@ import com.st.dianping.repository.UserDtoMapper;
 import com.st.dianping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sun.misc.BASE64Encoder;
 
 import java.security.MessageDigest;
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserDto registerUser(UserDto registerDto) throws SocketException {
 
         try {
