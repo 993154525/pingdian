@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ShaoTian
@@ -71,6 +73,35 @@ public class ShopServiceImpl implements ShopService {
         });
 
         return shopDtos;
+    }
+
+    @Override
+    public List<ShopDto> recommendShop(BigDecimal longitude, BigDecimal latitude) {
+
+        List<ShopDto> shopDtos = shopDtoMapper.recommendShop(longitude, latitude);
+        shopDtos.forEach(shopDto -> {
+            shopDto.setCategoryDto(categoryService.get(shopDto.getCategoryId()));
+            shopDto.setSellerDto(sellerService.get(shopDto.getSellerId()));
+        });
+
+        return shopDtos;
+    }
+
+    @Override
+    public List<ShopDto> search(BigDecimal longitude, BigDecimal latitude, String keyword, Integer categoryId, Integer pricePerMan, String tags) {
+        List<ShopDto> shopDtos = shopDtoMapper.searchShop(longitude, latitude, keyword, categoryId, pricePerMan, tags);
+        shopDtos.forEach(shopDto -> {
+            shopDto.setCategoryDto(categoryService.get(shopDto.getCategoryId()));
+            shopDto.setSellerDto(sellerService.get(shopDto.getSellerId()));
+            System.out.println(shopDto.toString());
+        });
+
+        return shopDtos;
+    }
+
+    @Override
+    public List<Map<String, Object>> searchGroupByTags(Integer categoryId, String keyword, String tags) {
+        return shopDtoMapper.searchGroupByTags(categoryId, keyword, tags);
     }
 
     @Override

@@ -92,6 +92,7 @@ public class UserController {
         return new CommonRes(userDto);
     }
 
+
     @RequestMapping(value = "/logout")
     public CommonRes logout() {
 

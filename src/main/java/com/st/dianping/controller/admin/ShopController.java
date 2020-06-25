@@ -23,7 +23,7 @@ import javax.validation.Valid;
  * @author ShaoTian
  * @date 2020/6/24 15:47
  */
-@Controller
+@Controller("admin/shop")
 @RequestMapping("/admin/shop")
 public class ShopController {
 
