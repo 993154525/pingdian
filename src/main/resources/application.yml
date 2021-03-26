@@ -19,9 +19,14 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
+  elasticsearch:
+    rest:
+      uris: 127.0.0.1:9200
 
 mybatis:
   mapper-locations: classpath:mapping/*.xml
 
 admin.name: 18874480670
 admin.password: 61QLbaWPNZcfN8dmkKN1uw==
+
+elasticsearch.ip: 127.0.0.1:9200

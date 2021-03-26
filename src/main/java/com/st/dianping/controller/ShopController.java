@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -53,9 +54,12 @@ public class ShopController {
                             @RequestParam(value = "keyword") String keyword,
                             @RequestParam(value = "orderby", required = false) Integer orderby,
                             @RequestParam(value = "categoryId", required = false) Integer categoryId,
-                            @RequestParam(value = "tags", required = false) String tags) {
+                            @RequestParam(value = "tags", required = false) String tags) throws IOException {
 
-        List<ShopDto> shopDtoList = shopService.search(longitude, latitude, keyword, categoryId, orderby, tags);
+
+        List<ShopDto> shopDtoList = (List<ShopDto>) shopService.searchEs(longitude, latitude, keyword, categoryId, orderby, tags).get("shop");
+        //List<ShopDto> shopDtoList = shopService.search(longitude, latitude, keyword, categoryId, orderby, tags);
+
         List<CategoryDto> categoryDtoList = categoryService.selectAllCategory();
         List<Map<String, Object>> groupByTags = shopService.searchGroupByTags(categoryId, keyword, tags);
         HashMap<String, Object> resMap = new HashMap<>();

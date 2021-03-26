@@ -2,8 +2,8 @@ package com.st.dianping.service;
 
 import com.st.dianping.dto.ShopDto;
 import com.st.dianping.exception.SocketException;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +23,8 @@ public interface ShopService {
     List<ShopDto> recommendShop(BigDecimal longitude, BigDecimal latitude);
 
     List<ShopDto> search(BigDecimal longitude, BigDecimal latitude, String keyword, Integer categoryId, Integer pricePerMan, String tags);
+
+    Map<String,Object> searchEs(BigDecimal longitude, BigDecimal latitude, String keyword, Integer categoryId, Integer pricePerMan, String tags) throws IOException;
 
     List<Map<String, Object>> searchGroupByTags(Integer categoryId, String keyword, String tags);
 

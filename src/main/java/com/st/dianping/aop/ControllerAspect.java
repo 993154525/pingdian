@@ -33,7 +33,7 @@ public class ControllerAspect {
     public Object adminControllerBeforeValidation(ProceedingJoinPoint joinPoint) throws Throwable {
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         AdminPermission adminPermission = method.getAnnotation(AdminPermission.class);
-
+        joinPoint.getSourceLocation();
         if (adminPermission == null) {
             //公共方法
             Object resultObject = joinPoint.proceed();
